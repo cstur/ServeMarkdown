@@ -1,0 +1,4 @@
+{
+  "origin": "https://example.com",
+  "allowMethods": "GET, POST"
+}
