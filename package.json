@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "debug": "node --inspect --debug-brk index.js",
-    "start": "nodemon index.js --exec babel-node --presets es2015,stage-2,stage-3",
+    "start": "env=development nodemon index.js --exec babel-node --presets es2015,stage-2,stage-3",
     "test": "npm run build; mocha --require 'babel-polyfill' --compilers js:babel-register",
     "build": "babel src -d build"
   },
@@ -22,9 +22,12 @@
     "kcors": "^1.3.2",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
+    "koa-logger": "^3.0.0",
     "koa-router": "^7.2.0",
     "promise-redis": "^0.0.5",
-    "redis": "^2.7.1"
+    "redis": "^2.7.1",
+    "winston": "^2.3.1",
+    "winston-daily-rotate-file": "^1.4.6"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
