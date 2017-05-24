@@ -49,7 +49,7 @@ const validateKey = async (ctx, next) => {
   await next();
 }
 
-api.get('/mk/:mkname', async (ctx, next) => {
+api.get('/md/:mkname', async (ctx, next) => {
   const {
     mkname
   } = ctx.params;
