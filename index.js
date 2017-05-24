@@ -1,4 +1,14 @@
-import app from './src/app.js';
+'use strict';
 
-const port = process.env.PORT || 6003;
+const env = process.env.NODE_ENV || 'development';
+const port = process.env.PORT || 6005;
+const src = env === 'production' ? './build/app' : './src/app';
+
+require('babel-polyfill');
+if (env === 'development') {
+  // for development use babel/register for faster runtime compilation
+  require('babel-register');
+}
+
+const app = require(src).default;
 app.listen(port);

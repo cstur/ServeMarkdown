@@ -1,4 +1,21 @@
 import KoaRouter from 'koa-router';
+import fs from 'fs';
+Promise.promisifyAll(fs);
+
+import path from 'path';
+import Promise from 'bluebird';
+
+import  marked from 'marked';
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false
+});
 
 const api = KoaRouter();
 
@@ -18,37 +35,12 @@ const validateKey = async (ctx, next) => {
   await next();
 }
 
-api.get('/:collection/:attribute/:value/count',
-  validateKey,
-  validateCollection,
-  async (ctx, next) => {
-    const {
-      collection,
-      attribute,
-      value
-    } = ctx.params;
-
-    const count = await ctx
-      .state
-      .collections[collection]
-      .countBy(attribute, value);
-
-    ctx.body = {
-      count: count,
-    };
-  });
-
-api.post('/:collection',
-  validateKey,
-  validateCollection,
-  async (ctx, next) => {
-    const { collection } = ctx.params;
-    const count = await ctx
-      .state
-      .collections[collection]
-      .add(ctx.request.body);
-
-    ctx.status = 201;
-  });
+api.get('/mk/:mkname', async (ctx, next) => {
+  const {
+    mkname
+  } = ctx.params;
+  const val = await fs.readFileAsync(path.join(__dirname, '../markdowns/'+mkname));
+  ctx.body = marked(val.toString());
+});
 
 export default api;
