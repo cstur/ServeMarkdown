@@ -4,8 +4,10 @@ Promise.promisifyAll(fs);
 
 import path from 'path';
 import Promise from 'bluebird';
-
-import  marked from 'marked';
+import highlightjs from 'highlight.js';
+import nunjucks from 'nunjucks';
+nunjucks.configure('views', { autoescape: true });
+import  marked, { Renderer } from 'marked';
 marked.setOptions({
   renderer: new marked.Renderer(),
   gfm: true,
@@ -16,6 +18,18 @@ marked.setOptions({
   smartLists: true,
   smartypants: false
 });
+
+// Create your custom renderer.
+const renderer = new Renderer();
+renderer.code = (code, language) => {
+  // Check whether the given language is valid for highlight.js.
+  const validLang = !!(language && highlightjs.getLanguage(language));
+  // Highlight only if the language is valid.
+  const highlighted = validLang ? highlightjs.highlight(language, code).value : code;
+  // Render the highlighted code with `hljs` class.
+  return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+};
+
 
 const api = KoaRouter();
 
@@ -39,8 +53,9 @@ api.get('/mk/:mkname', async (ctx, next) => {
   const {
     mkname
   } = ctx.params;
+
   const val = await fs.readFileAsync(path.join(__dirname, '../markdowns/'+mkname));
-  ctx.body = marked(val.toString());
+  ctx.body = nunjucks.render('index.html', { foo: marked(val.toString()) });
 });
 
 export default api;
