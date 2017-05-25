@@ -25,12 +25,26 @@ renderer.code = (code, language) => {
   return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
 };
 const api = KoaRouter();
-const mdRootPath=process.env.mdRootPath || path.join(__dirname, '../../markdowns/');
-api.get('/md/:mkname', async (ctx, next) => {
+const accessPwd=process.env.secrect || '';
+api.get('/:username/:mkname', async (ctx, next) => {
   const {
+    username,
     mkname
   } = ctx.params;
-  const val = await fs.readFileAsync(mdRootPath+mkname);
+
+  if (username=='admin') {
+    const secrect = ctx.request.query.pwd;
+    if (secrect!=accessPwd) {
+      return ctx.throw(401);
+    }
+  }
+
+  let mdRootPath=process.env.mdRootPath || path.join(__dirname, '../../markdowns/');
+  if (username=='public') {
+    mdRootPath = path.join(__dirname, '../');
+  }
+
+  const val = await fs.readFileAsync(path.join(mdRootPath, username, mkname));
   ctx.body = nunjucks.render('index.html', { foo: marked(val.toString()) });
 });
 
