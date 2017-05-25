@@ -1,5 +1,5 @@
 ## description
-This project use to serve markdown file as html in the simplest way base on koa2 and marked, feel free to clone, fork, pull request and deploy to your own server
+This project use to serve markdown file as html in the simplest way base on koa2 and marked, feel free to clone, fork, merge request and deploy to your own server
 
 ## online demo
 - public user: [http://cms.xbearx.com/public/sample.md](http://cms.xbearx.com/public/sample.md)
