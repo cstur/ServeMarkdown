@@ -38,3 +38,5 @@ NODE_ENV=production mdRootPath=/data/files/ secrect=123456 pm2 start index.js --
 - serve md as html
 - password protected
 - data file seperated
+
+## [report QA and issues](https://github.com/cstur/ServeMarkdown/issues)
