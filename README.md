@@ -1,17 +1,18 @@
 ## description
-This project use to serve markdown file as html in the simplest way base on koa2 and marked, feel free to clone, fork and deploy to your own server
+This project use to serve markdown file as html in the simplest way base on koa2 and marked, feel free to clone, fork, pull request and deploy to your own server
 
 ## online demo
-[public](http://cms.xbearx.com/public/sample.md)
-[normal](http://cms.xbearx.com/stur/awesome.md)
-[protected](http://cms.xbearx.com/admin/ops.md?pwd=123456)
+- public user: [http://cms.xbearx.com/public/sample.md](http://cms.xbearx.com/public/sample.md)
+- normal user:[http://cms.xbearx.com/stur/awesome.md](http://cms.xbearx.com/stur/awesome.md)
+- protected admin user [http://cms.xbearx.com/admin/ops.md?pwd=123456](http://cms.xbearx.com/admin/ops.md?pwd=123456)
 
 ## api
-http://[host]/[username]/[filename]
+- http://[host]/[username]/[filename]
+
 username: folder name, username=='public' will serve public folder in the project, username =='admin' will verify the secrect in the query params 'pwd'
 
 ## development guide
-```
+```sh
 # install dependency
 yarn
 
@@ -23,7 +24,7 @@ npm start
 ```
 
 ## deploy guide
-```
+```sh
 yarn
 npm run build
 
