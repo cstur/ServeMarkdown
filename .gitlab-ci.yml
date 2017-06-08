@@ -1,8 +1,7 @@
-image: sdongjie/node-babel
-
 before_script:
-  - yarn
-  
-deploy:
+  - docker info
+
+build_image:
   script:
-    pm2 start index.js
+    - docker build -t cms-docker-image .
+    - docker run -p 6006:6006 -d cms-docker-image
