@@ -1,12 +1,8 @@
 image: sdongjie/node-babel
 
-cache:
-  paths:
-  - node_modules/
-  
 before_script:
   - yarn
   
 deploy:
   script:
-    ls
+    pm2 start index.js
