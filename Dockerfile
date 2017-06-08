@@ -23,4 +23,4 @@ ONBUILD COPY . /app
 
 EXPOSE 6006
 
-CMD ["stapm2-dockerrt", "index.js"]
+CMD ["pm2-docker", "index.js"]
