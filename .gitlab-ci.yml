@@ -1,0 +1,9 @@
+image: sdongjie/node-babel
+
+cache:
+  paths:
+  - node_modules/
+  
+before_script:
+  - yarn
+  
