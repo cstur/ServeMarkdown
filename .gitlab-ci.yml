@@ -6,4 +6,3 @@ before_script:
 build_image:
   script:
     - docker build -t cms-docker-image .
-    - docker run -p 6006:6006 -d cms-docker-image
