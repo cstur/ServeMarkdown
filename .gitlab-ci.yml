@@ -3,5 +3,6 @@ before_script:
 
 build_image:
   script:
-    - docker build -t sdongjie/node-cms .
+    - docker build --force-rm --rm -t sdongjie/node-cms .
+    - docker rm -f cms
     - docker run -p 6006:6006 --name cms -d sdongjie/node-cms
