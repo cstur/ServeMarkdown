@@ -6,4 +6,4 @@ ADD package.json yarn.lock /app/
 RUN yarn && yarn cache clean
 ADD . /app
 EXPOSE 6006
-CMD ["pm2-docker", "build/server.js"]
+CMD ["pm2-docker", "index.js"]
