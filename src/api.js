@@ -25,7 +25,7 @@ renderer.code = (code, language) => {
   return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
 };
 const api = KoaRouter();
-const accessPwd=process.env.secrect || '';
+const accessPwd=process.env.secrect || '123456';
 api.get('/:username/:mkname', async (ctx, next) => {
   const {
     username,
