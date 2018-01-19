@@ -2,9 +2,7 @@
 This project use to serve markdown file as html in the simplest way base on koa2 and marked, feel free to clone, fork, merge request and deploy to your own server
 
 ## online demo
-- public user: [http://cms.xbearx.com/public/sample.md](http://cms.xbearx.com/public/sample.md)
-- normal user:[http://cms.xbearx.com/stur/awesome.md](http://cms.xbearx.com/stur/awesome.md)
-- protected admin user [http://cms.xbearx.com/admin/ops.md?pwd=123456](http://cms.xbearx.com/admin/ops.md?pwd=123456)
+- public user: [http://tutorial.xbearx.com/public/sample.md](http://tutorial.xbearx.com/public/sample.md)
 
 ## api
 - http://[host]/[username]/[filename]
